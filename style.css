@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100vh;
+    width: 100vw;
+}
+
+.container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.franja{
+    width: 20vw;
+    height: 100vh;
+    background-color: rgba(201,35,27,255);
+}
+
+.contenido{
+    width: 80vw;
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    height: 20vh;
+    width: 80vw;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.titulo{
+    font-size: 36px;
+}
+
+.inputCrear{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+}
+
+ .crearUsuario{
+    margin-right: 50px;
+    width: 30%;
+    height: 35px;
+    border: 0;
+    background-color: rgba(204,34,51,255);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bolder;
+    cursor: pointer;
+ }
+
+ .inputBuscar{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    padding-left: 50px;
+ }
+ .inputBuscar label{
+    font-weight: bolder;
+ }
+
+ .inputBuscar input{
+    height: 50%;
+    margin-left: 10px;
+    width: 30%;
+    border-radius: 20px;
+    background-color: rgba(243,246,251,255);
+    padding-left: 5px;
+ }
+
+ .tablas{
+    display: grid;
+    padding-left: 50px;
+    padding-right: 50px;
+ }
+
+table{
+    text-align: center;
+}
+
+ .tablas th{
+    padding:10px;
+    background-color:rgba(243,246,251,255);
+ }
+
+ .tablas td{
+    padding: 10px;
+ }
+
+ .tablas td:nth-child(4){
+    color: red;
+ }
