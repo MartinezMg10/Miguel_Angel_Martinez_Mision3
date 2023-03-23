@@ -1,6 +1,4 @@
 const table = document.getElementById('table')
-const docencia = document.getElementById('docencia')
-const tdDocencia = document.getElementById('tdDocencia')
 const crearUsuario = document.getElementById('crearUsuario')
 const buscar = document.getElementById('buscar')
 
@@ -29,25 +27,82 @@ window.addEventListener("load", ()=> {
     } )
 
     array.forEach(element => {
-        let tabla = document.createElement('tr')
-        let tdArea = document.createElement('td')
-        let tdNombre = document.createElement('td')
-        let tdUsuario = document.createElement('td')
-        let tdEmail = document.createElement('td')
-        let tdEdad = document.createElement('td')
 
-        tdNombre.textContent=element.nombre
-        tdArea.textContent=element.area
-        tdUsuario.textContent = element.usuario
-        tdEmail.textContent= element.email
-        tdEdad.textContent=element.edad
+        if(element.area == 'docencia' || element.area == 'Docencia'){
 
-        tabla.appendChild(tdArea)
-        tabla.appendChild(tdNombre)
-        tabla.appendChild(tdUsuario)
-        tabla.appendChild(tdEmail)
-        tabla.appendChild(tdEdad)
-        table.appendChild(tabla)
+            let docencia = null
+            if(docencia == null){
+                docencia = document.createElement('td')
+                docencia.textContent = 'Docencia'
+            }else{
+                docencia.rowSpan+=1;
+            }
+
+            let tabla = document.createElement('tr')
+            let tdNombre = document.createElement('td')
+            let tdUsuario = document.createElement('td')
+            let tdEmail = document.createElement('td')
+            let tdEdad = document.createElement('td')
+    
+            tdNombre.textContent=element.nombre
+            tdUsuario.textContent = element.usuario
+            tdEmail.textContent= element.email
+            tdEdad.textContent=element.edad
+    
+            tabla.appendChild(docencia)
+            tabla.appendChild(tdNombre)
+            tabla.appendChild(tdUsuario)
+            tabla.appendChild(tdEmail)
+            tabla.appendChild(tdEdad)
+            table.appendChild(tabla)
+            
+        }
+        if(element.area == 'tecnologia' || element.area == 'Tecnologia'){
+            const tecnologia = document.createElement('td')
+            tecnologia.textContent = 'Tecnologia'
+            tecnologia.rowSpan=+1;
+
+            let tabla = document.createElement('tr')
+            let tdNombre = document.createElement('td')
+            let tdUsuario = document.createElement('td')
+            let tdEmail = document.createElement('td')
+            let tdEdad = document.createElement('td')
+    
+            tdNombre.textContent=element.nombre
+            tdUsuario.textContent = element.usuario
+            tdEmail.textContent= element.email
+            tdEdad.textContent=element.edad
+    
+            tabla.appendChild(tecnologia)
+            tabla.appendChild(tdNombre)
+            tabla.appendChild(tdUsuario)
+            tabla.appendChild(tdEmail)
+            tabla.appendChild(tdEdad)
+            table.appendChild(tabla)
+        }
+        if(element.area == 'marketing' || element.area == 'marketing'){
+            const marketing = document.createElement('td')
+            marketing.textContent = 'Marketing'
+            marketing.rowSpan=+1;
+
+            let tabla = document.createElement('tr')
+            let tdNombre = document.createElement('td')
+            let tdUsuario = document.createElement('td')
+            let tdEmail = document.createElement('td')
+            let tdEdad = document.createElement('td')
+    
+            tdNombre.textContent=element.nombre
+            tdUsuario.textContent = element.usuario
+            tdEmail.textContent= element.email
+            tdEdad.textContent=element.edad
+    
+            tabla.appendChild(marketing)
+            tabla.appendChild(tdNombre)
+            tabla.appendChild(tdUsuario)
+            tabla.appendChild(tdEmail)
+            tabla.appendChild(tdEdad)
+            table.appendChild(tabla)
+        }
     });
     
 

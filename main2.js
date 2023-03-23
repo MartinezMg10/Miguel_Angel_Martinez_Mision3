@@ -9,6 +9,8 @@ const direccion = document.getElementById('direccion')
 const enviar = document.getElementById('enviar')
 
 let array= []
+let usuariosPush =[]
+
 
 class Persona {
     constructor(nombre,apellidos,area,usuario,edad,direccion,email){
@@ -29,25 +31,34 @@ atras.addEventListener('click', ()=>{
 })
 
 enviar.addEventListener('click',()=>{
-    if(!nombres.value == '' && !apellidos.value == '' && !edad.value == '' && !area.value == ''&& !direccion.value == ''&& !email.value == ''&& !usuarios.value == ''){
-        const nuevaPersona = new Persona (nombres.value,apellidos.value,area.value,usuarios.value,edad.value,direccion.value,email.value)
 
-        array.push(nuevaPersona)
-        console.log(nuevaPersona)
+    const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-        nombres.value = ''
-        apellidos.value = ''
-        edad.value = ''
-        area.value =''
-        usuarios.value = ''
-        direccion.value = ''
-        email.value = ''
+    if(!nombres.value == '' && !apellidos.value == '' && !edad.value == '' && !area.value == ''&& !direccion.value == ''&& !email.value == ''&& emailRegex.test(email.value) && !usuarios.value == ''){
 
-        const traerUsuarios = JSON.parse(localStorage.getItem("usuarios"));
-        localStorage.setItem("usuarios", JSON.stringify(array));
+        if(area.value != 'docencia' && area.value != 'Docencia' && area.value != 'tecnologia' && area.value != 'Tecnologia' && area.value != 'marketing' && area.value != 'Marketing'){
+            alert('Area invalida')
+        }
 
+                    console.log(usuarios.value)
+                const nuevaPersona = new Persona (nombres.value,apellidos.value,area.value,usuarios.value,edad.value,direccion.value,email.value)
+
+                array.push(nuevaPersona)
+                console.log(nuevaPersona)
+
+                nombres.value = ''
+                apellidos.value = ''
+                edad.value = ''
+                area.value =''
+                usuarios.value = ''
+                direccion.value = ''
+                email.value = ''
+
+                const traerUsuarios = JSON.parse(localStorage.getItem("usuarios"));
+                localStorage.setItem("usuarios", JSON.stringify(array));
+        
     }else{
-        alert('Faltan campos por llenar')
+        alert('Faltan campos por llenar o los datos son erroneos')
     }
     
 })
@@ -60,7 +71,6 @@ window.addEventListener("load", ()=> {
     traerUsuarios.forEach(element => {
         let person = new Persona(element.nombre,element.apellidos,element.area,element.usuario,element.edad,element.direccion,element.email)
         array.push(person)
-        console.log(traerUsuarios)
     } )
 });
 
