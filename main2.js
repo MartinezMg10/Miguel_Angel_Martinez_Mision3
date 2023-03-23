@@ -9,9 +9,6 @@ const direccion = document.getElementById('direccion')
 const enviar = document.getElementById('enviar')
 
 let array= []
-let usuariosPush =[]
-
-
 class Persona {
     constructor(nombre,apellidos,area,usuario,edad,direccion,email){
 
@@ -25,7 +22,6 @@ class Persona {
     }
 }
 
-
 atras.addEventListener('click', ()=>{
     location.href='index.html'
 })
@@ -36,15 +32,9 @@ enviar.addEventListener('click',()=>{
 
     if(!nombres.value == '' && !apellidos.value == '' && !edad.value == '' && !area.value == ''&& !direccion.value == ''&& !email.value == ''&& emailRegex.test(email.value) && !usuarios.value == ''){
 
-        if(area.value != 'docencia' && area.value != 'Docencia' && area.value != 'tecnologia' && area.value != 'Tecnologia' && area.value != 'marketing' && area.value != 'Marketing'){
-            alert('Area invalida')
-        }
+                    let resultado = array.filter(element => element.usuario == usuarios.value);
+                    if(resultado == ''){
 
-
-                if(usuariosPush.includes(usuarios.value)){
-                    alert('Usuario repetido')
-                }else{
-                    usuariosPush.push(usuarios.value)
                     const nuevaPersona = new Persona (nombres.value,apellidos.value,area.value,usuarios.value,edad.value,direccion.value,email.value)
                     array.push(nuevaPersona)
                     console.log(nuevaPersona)
@@ -56,11 +46,12 @@ enviar.addEventListener('click',()=>{
                     usuarios.value = ''
                     direccion.value = ''
                     email.value = ''
+                    location.href='index.html'
     
-                    localStorage.setItem("usuariosNames", JSON.stringify(usuariosPush));
                     localStorage.setItem("usuarios", JSON.stringify(array));
-                }
-                location.href='index.html'
+                    }else{
+                        alert('Usuario repetido')
+                    }
     }else{
         alert('Faltan campos por llenar o los datos son erroneos')
     }
@@ -71,17 +62,10 @@ enviar.addEventListener('click',()=>{
 
 window.addEventListener("load", ()=> {
     const traerUsuarios = JSON.parse(localStorage.getItem("usuarios"));
-    const traerNames = JSON.parse(localStorage.getItem("usuariosNames"));
-
 
     traerUsuarios.forEach(element => {
         let person = new Persona(element.nombre,element.apellidos,element.area,element.usuario,element.edad,element.direccion,element.email)
         array.push(person)
-    } )
-
-    traerNames.forEach(element => {
-        let person = new Persona(element.nombre,element.apellidos,element.area,element.usuario,element.edad,element.direccion,element.email)
-        usuariosPush.push(person)
     } )
 });
 

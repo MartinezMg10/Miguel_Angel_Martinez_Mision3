@@ -1,6 +1,7 @@
 const table = document.getElementById('table')
 const crearUsuario = document.getElementById('crearUsuario')
 const buscar = document.getElementById('buscar')
+const tbody = document.getElementById('tbody')
 
 let array=[]
 class Persona {
@@ -16,7 +17,6 @@ class Persona {
     }
 }
 
-
 window.addEventListener("load", ()=> {
     const traerUsuarios = JSON.parse(localStorage.getItem("usuarios"));
 
@@ -26,86 +26,41 @@ window.addEventListener("load", ()=> {
         console.log(traerUsuarios)
     } )
 
-    array.forEach(element => {
-
-        if(element.area == 'docencia' || element.area == 'Docencia'){
-
-            let docencia = null
-            if(docencia == null){
-                docencia = document.createElement('td')
-                docencia.textContent = 'Docencia'
-            }else{
-                docencia.rowSpan+=1;
-            }
-
-            let tabla = document.createElement('tr')
-            let tdNombre = document.createElement('td')
-            let tdUsuario = document.createElement('td')
-            let tdEmail = document.createElement('td')
-            let tdEdad = document.createElement('td')
-    
-            tdNombre.textContent=element.nombre
-            tdUsuario.textContent = element.usuario
-            tdEmail.textContent= element.email
-            tdEdad.textContent=element.edad
-    
-            tabla.appendChild(docencia)
-            tabla.appendChild(tdNombre)
-            tabla.appendChild(tdUsuario)
-            tabla.appendChild(tdEmail)
-            tabla.appendChild(tdEdad)
-            table.appendChild(tabla)
-            
+    array.sort(function (a, b) {
+        if (a.area > b.area) {
+        return 1;
         }
-        if(element.area == 'tecnologia' || element.area == 'Tecnologia'){
-            const tecnologia = document.createElement('td')
-            tecnologia.textContent = 'Tecnologia'
-            tecnologia.rowSpan=+1;
-
-            let tabla = document.createElement('tr')
-            let tdNombre = document.createElement('td')
-            let tdUsuario = document.createElement('td')
-            let tdEmail = document.createElement('td')
-            let tdEdad = document.createElement('td')
-    
-            tdNombre.textContent=element.nombre
-            tdUsuario.textContent = element.usuario
-            tdEmail.textContent= element.email
-            tdEdad.textContent=element.edad
-    
-            tabla.appendChild(tecnologia)
-            tabla.appendChild(tdNombre)
-            tabla.appendChild(tdUsuario)
-            tabla.appendChild(tdEmail)
-            tabla.appendChild(tdEdad)
-            table.appendChild(tabla)
+        if (a.area < b.area) {
+        return -1;
         }
-        if(element.area == 'marketing' || element.area == 'marketing'){
-            const marketing = document.createElement('td')
-            marketing.textContent = 'Marketing'
-            marketing.rowSpan=+1;
-
-            let tabla = document.createElement('tr')
-            let tdNombre = document.createElement('td')
-            let tdUsuario = document.createElement('td')
-            let tdEmail = document.createElement('td')
-            let tdEdad = document.createElement('td')
-    
-            tdNombre.textContent=element.nombre
-            tdUsuario.textContent = element.usuario
-            tdEmail.textContent= element.email
-            tdEdad.textContent=element.edad
-    
-            tabla.appendChild(marketing)
-            tabla.appendChild(tdNombre)
-            tabla.appendChild(tdUsuario)
-            tabla.appendChild(tdEmail)
-            tabla.appendChild(tdEdad)
-            table.appendChild(tabla)
-        }
+        return 0;
     });
-    
 
+    array.forEach(element => {
+        
+        let tabla = document.createElement('tr')
+        let area = document.createElement('td')
+        let tdNombre = document.createElement('td')
+        let tdUsuario = document.createElement('td')
+        let tdEmail = document.createElement('td')
+        let tdEdad = document.createElement('td')
+
+            area.textContent=element.area
+            tdNombre.textContent=element.nombre +' '+ element.apellidos
+            tdUsuario.textContent = element.usuario
+            tdEmail.textContent= element.email
+            tdEdad.textContent=element.edad
+
+            tabla.appendChild(area)
+            tabla.appendChild(tdNombre)
+            tabla.appendChild(tdUsuario)
+            tabla.appendChild(tdEmail)
+            tabla.appendChild(tdEdad)
+            table.appendChild(tabla)
+
+            /* let resultado = array.filter(element => element.area == element.area);
+            console.log(resultado)  */
+    });
 });
 
 crearUsuario.addEventListener('click',()=>{
@@ -116,7 +71,7 @@ crearUsuario.addEventListener('click',()=>{
 buscar.addEventListener("keyup",(e)=>{
     if (e.code === 'Enter') {
         array.forEach(element => {
-            if(element.usuario == buscar.value){
+            if(element.nombre == buscar.value){
                 table.textContent=''
                 let tabla1 = document.createElement('tr')
                 let thArea = document.createElement('th')
@@ -144,13 +99,13 @@ buscar.addEventListener("keyup",(e)=>{
                 let tdUsuario = document.createElement('td')
                 let tdEmail = document.createElement('td')
                 let tdEdad = document.createElement('td')
-        
-                tdNombre.textContent=element.nombre
+
+                tdNombre.textContent=element.nombre +' '+ element.apellidos
                 tdArea.textContent=element.area
                 tdUsuario.textContent = element.usuario
                 tdEmail.textContent= element.email
                 tdEdad.textContent=element.edad
-        
+
                 tabla.appendChild(tdArea)
                 tabla.appendChild(tdNombre)
                 tabla.appendChild(tdUsuario)
@@ -161,3 +116,4 @@ buscar.addEventListener("keyup",(e)=>{
         })
     }
 });
+
