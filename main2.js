@@ -59,7 +59,8 @@ enviar.addEventListener('click',()=>{
     
                     localStorage.setItem("usuariosNames", JSON.stringify(usuariosPush));
                     localStorage.setItem("usuarios", JSON.stringify(array));
-                }        
+                }
+                location.href='index.html'
     }else{
         alert('Faltan campos por llenar o los datos son erroneos')
     }
