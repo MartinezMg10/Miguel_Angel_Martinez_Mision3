@@ -40,23 +40,27 @@ enviar.addEventListener('click',()=>{
             alert('Area invalida')
         }
 
-                    console.log(usuarios.value)
-                const nuevaPersona = new Persona (nombres.value,apellidos.value,area.value,usuarios.value,edad.value,direccion.value,email.value)
 
-                array.push(nuevaPersona)
-                console.log(nuevaPersona)
+                usuariosPush.push(usuarios.value)
+                if(usuariosPush.includes(usuarios.value)){
+                    alert('Usuario repetido')
+                }else{
+                    const nuevaPersona = new Persona (nombres.value,apellidos.value,area.value,usuarios.value,edad.value,direccion.value,email.value)
 
-                nombres.value = ''
-                apellidos.value = ''
-                edad.value = ''
-                area.value =''
-                usuarios.value = ''
-                direccion.value = ''
-                email.value = ''
-
-                const traerUsuarios = JSON.parse(localStorage.getItem("usuarios"));
-                localStorage.setItem("usuarios", JSON.stringify(array));
-        
+                    array.push(nuevaPersona)
+                    console.log(nuevaPersona)
+    
+                    nombres.value = ''
+                    apellidos.value = ''
+                    edad.value = ''
+                    area.value =''
+                    usuarios.value = ''
+                    direccion.value = ''
+                    email.value = ''
+    
+                    const traerUsuarios = JSON.parse(localStorage.getItem("usuarios"));
+                    localStorage.setItem("usuarios", JSON.stringify(array));
+                }        
     }else{
         alert('Faltan campos por llenar o los datos son erroneos')
     }
